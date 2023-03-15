@@ -16,9 +16,15 @@ The function should:
 */
 
 
-function createMenuItem(/*Your code here*/){
-  /*Your code here*/
+function createMenuItem(name, price, category){
+  let object = {
+    name,
+    price,
+    category,
+  }
+  return object;
 }
+console.log(createMenuItem('taco', 8, 'lunch'))
 
 
 
@@ -31,8 +37,9 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
-
-
+console.log(createMenuItem('omelette', 10, 'breakfast'))
+console.log(createMenuItem('sandwich', 7, 'lunch'))
+console.log(createMenuItem('pizza', 12, 'lunch'))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to the burger object below that automatically calculates price depending on the string received as a parameter. 
@@ -51,8 +58,17 @@ const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  
+  discount: function (discountType) {
+    if (discountType === 'student' || discountType === 'teacher') {
+      return this.price - this.price * 0.25;
+    } else {
+      return this.price - this.price * 0.10;
+    }
+  }
 }
+console.log(burger.discount('student'));
+console.log(burger.discount('teacher'));
+console.log(burger.discount('public'));
 
 
 
@@ -73,7 +89,7 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
-
+console.log(reviews[5])
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -81,7 +97,7 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
-
+console.log(reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays")
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function that creates an object with name, rating, feedback, add the new review to the end of an array and returns the resulting array. 
@@ -95,10 +111,17 @@ Use the addReview function below to do the following:
 */
 
 
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+function addReview(reviews, name, rating, feedback){
+  let post = {
+    name,
+    rating,
+    feedback,
+  }
+  reviews.push(post)
+  return reviews
 }
 
+console.log(addReview(reviews, 'Billy', 2, 'Lame food!'))
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -111,11 +134,16 @@ Use the getReviewByIndex function below to do the following:
   For example: getReviewByIndex(reviews,0) would return: "Daniela gave the restaurant a 5 star review, and their feedback was: Beautiful atmosphere and wonderful vegan options!"
 */
 
-
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+// input
+  // reviews: array of objects
+  // index: specified index #
+// output
+  // return a string
+function getReviewByIndex(array, index) {
+  let object = array[index]
+    return `${object.name} gave the restaurant a ${object.rating} star review, and their feedback was: ${object.feedback}`
 }
-
+console.log(getReviewByIndex(reviews,0))
   
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -130,11 +158,13 @@ Use the getLastReview function below to do the following:
   NOTE: her feedback should not be blank if task 4 was done correctly
 */
 
-
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+// input
+  // an array
+function getLastReview(array) {
+  let recentReview = array[array.length - 1]
+  return `${recentReview.name} gave the restaurant a ${recentReview.rating} star review, and their feedback was: ${recentReview.feedback}`
 } 
-
+console.log(getLastReview(reviews))
 
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
